@@ -5,7 +5,7 @@ interface Commande {
     prix:number,
     description: string[],
     
-}
+} 
 let maCommande: Commande = {
     id: 1,
     nom: "Anchois 23cm",
