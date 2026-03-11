@@ -1,3 +1,4 @@
+import './style.css'
 
 interface Commande {
     id:number,
@@ -6,47 +7,43 @@ interface Commande {
     description: string[],
     
 } 
-let maCommande: Commande = {
-    id: 1,
-    nom: "Anchois 23cm",
-    prix:7.9,
-    description : ["sauce tomate premium, origan,huile d'olive extra vierge,anchois,olive"],
-    
-};
-let maCommande1: Commande = {
-    id: 2,
-    nom: "Emmental 23cm",
-    prix:7.9,
-    description : ["sauce tomate premium, origan,huile d'olive extra vierge,emmental,basilic,olive"],
-    
-};
-let maCommande2: Commande = {
-    id: 3,
-    nom: "Margherita 23cm",
-    prix:7.9,
-    description : ["sauce tomate premium, origan,huile d'olive extra vierge,emmental,basilic,olive"],
-    
-};
 
 
-console.log(` 1: 
-    descrption: "${maCommande.description} "
-    id: ${maCommande.id} 
-    nom: ${maCommande.nom}
-    prix: ${maCommande.prix}   `)
+const carte: Commande[] = [
+    {id:0,nom: "Anchois 23cm", prix: 7.9, description:["sauce tomate premium, origan,huile d'olive extra vierge,anchois,olive"]},
+    {id:1,nom: "Emmental 23cm", prix: 7.9, description:["sauce tomate premium, origan,huile d'olive extra vierge,emmental,basilic,olive"]},
+    {id:2,nom: "Margherita 23cm", prix: 7.9, description:["sauce tomate premium, origan,huile d'olive extra vierge,emmental,basilic,olive"] },
+];
 
-    console.log(` 2: 
-    descrption: "${maCommande1.description} "
-    id: ${maCommande1.id} 
-    nom: ${maCommande1.nom}
-    prix: ${maCommande1.prix}   `)
 
-    console.log(` 3: 
-    descrption: "${maCommande2.description} "
-    id: ${maCommande2.id} 
-    nom: ${maCommande2.nom}
-    prix: ${maCommande2.prix}   `)
 
+carte.forEach((plat, index) => {
+    console.log(`${index + 1}:
+    description: ${plat.description}
+    id: ${plat.id}
+    nom: ${plat.nom}
+    prix ${plat.prix}`);
+         
+});
+
+
+
+const appDiv = document.querySelector<HTMLDivElement>('#app');
+
+if (appDiv) {
+    appDiv.innerHTML = `
+        ${carte.map(p => {
+            let prix: number = p.prix;
+            return `
+                <div class="card">
+                    <h3><strong>${p.nom}</strong></h3>
+                    <p>${p.description}</p>
+                    <p><strong>Prix : ${prix} €</strong></p>
+                </div>
+            `;
+        }).join('')}
+    `;
+}
 
 
 
