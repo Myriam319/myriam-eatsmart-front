@@ -1,4 +1,7 @@
-import './style.css'
+import './style.css';
+
+
+
 
 interface Commande {
     id:number,
@@ -30,18 +33,23 @@ carte.forEach((plat, index) => {
 
 const appDiv = document.querySelector<HTMLDivElement>('#app');
 
+
 if (appDiv) {
     appDiv.innerHTML = `
-        ${carte.map(p => {
-            let prix: number = p.prix;
-            return `
+        <header>
+            <h1>EatSmart - Carte du Restaurant</h1>
+        </header>
+
+        <main class="menu-container">
+            ${carte.map(p => `
                 <div class="card">
                     <h3><strong>${p.nom}</strong></h3>
                     <p>${p.description}</p>
-                    <p><strong>Prix : ${prix} €</strong></p>
+                    <p><strong>Prix : ${p.prix} €</strong></p>
+                    
                 </div>
-            `;
-        }).join('')}
+            `).join('')}
+        </main>
     `;
 }
 
